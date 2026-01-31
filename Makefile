@@ -1,4 +1,5 @@
 DOCKER_COMPOSE_DEV = docker compose
+CONTAINER_NAME_PAYLOAD = website-crm-payload-payload-1
 
 args = `arg="$(filter-out $(firstword $(MAKECMDGOALS)),$(MAKECMDGOALS))" && echo $${arg:-${1}}`
 
@@ -23,6 +24,7 @@ help:
 	@echo "$(call format,start,'Start dev')"
 	@echo "$(call format,stop,'Stop dev')"
 	@echo "$(call format,down,'Down dev')"
+	@echo "$(call format,bash,'Bash dev')"
 	@echo "$(call yellow,===========GIT=================)"
 	@echo "$(call format,git-remote-v,'git remote -v')"
 	@echo "$(call format,git-push-origin-dk-master,'git push origin-dk master')"
@@ -43,3 +45,7 @@ stop: ## Stop dev
 down: ## Down dev
 	$(DOCKER_COMPOSE_DEV) down
 .PHONY: down
+
+bash: ## Bash dev
+	docker exec -it $(CONTAINER_NAME_PAYLOAD) sh
+.PHONY: bash

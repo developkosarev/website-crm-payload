@@ -1,4 +1,16 @@
 services:
+  payload:
+    image: website-crm:v0.0.1
+    ports:
+      # HTTP
+      - target: 3000
+        published: 3000
+        protocol: tcp
+    environment:
+      DATABASE_URL: ${DATABASE_URL_DOCKER}
+      PAYLOAD_SECRET: ${PAYLOAD_SECRET}
+      PAYLOAD_PREVIEW_SECRET: ${PAYLOAD_PREVIEW_SECRET}
+
   #payload:
   #  image: node:18-alpine
   #  ports:
@@ -24,7 +36,7 @@ services:
   #  logging:
   #    driver: none
 
-  ###> doctrine/doctrine-bundle ###
+
   database:
     image: postgres:${POSTGRES_VERSION:-16}-alpine
     environment:
