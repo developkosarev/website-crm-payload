@@ -1,6 +1,8 @@
 services:
   payload:
     image: website-crm:v0.0.1
+    depends_on:
+      - database
     ports:
       # HTTP
       - target: 3000
@@ -10,6 +12,16 @@ services:
       DATABASE_URL: ${DATABASE_URL_DOCKER}
       PAYLOAD_SECRET: ${PAYLOAD_SECRET}
       PAYLOAD_PREVIEW_SECRET: ${PAYLOAD_PREVIEW_SECRET}
+
+  #payload-migrate:
+  #  image: website-crm:v0.0.2
+  #  depends_on:
+  #    - database
+  #  command: npm run payload migrate
+  #  environment:
+  #    DATABASE_URL: ${DATABASE_URL_DOCKER}
+  #    PAYLOAD_SECRET: ${PAYLOAD_SECRET}
+  #    PAYLOAD_PREVIEW_SECRET: ${PAYLOAD_PREVIEW_SECRET}
 
   #payload:
   #  image: node:18-alpine

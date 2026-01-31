@@ -14,7 +14,7 @@ $ pnpm payload:ci
 
 ```
 docker build --tag website-crm:v0.0.1 --file Dockerfile .
-docker build --tag website-crm:v0.0.1 --progress=plain --target builder --file Dockerfile .
+docker build --tag website-crm:v0.0.2 --progress=plain --target builder --file Dockerfile .
 ```
 
 
